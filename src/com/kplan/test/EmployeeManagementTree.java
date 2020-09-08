@@ -20,7 +20,7 @@ public class EmployeeManagementTree {
 				 				.filter(e -> e.getMid()>=0)
 				 				.collect(Collectors.toList());
 		 int rmid =0; //root Manager ID
-		 int i=0;
+		 boolean flag = true;
 		 List<String> tmpArray = new ArrayList<String>();
 		
 		 
@@ -32,23 +32,23 @@ public class EmployeeManagementTree {
 				
 			} else if(employee.getMid() == rmid) {
 				// If previous employee has seen with the same manager add to temporary array to sort before printing
-				if (i==0) {
-					
-					
+				if (flag) {
 					tmpArray.add(employee.getEname());
-					i++;
+					
 				}  else {
 				
 				System.out.println("->->"+employee.getEname());
 				}
 			} else {
-				
+			
 				tmpArray.sort(Comparator.comparing(String::toString));
 				for(String eName : tmpArray) {
 					System.out.println("->->"+eName);
+					
 				}
 				 
-				if(i>1) i =0; //reset the flag value
+				//if(i>1) i =0; //reset the flag value
+				flag= false; //reset the flag value
 				
 				System.out.println("->->->"+employee.getEname());
 				
